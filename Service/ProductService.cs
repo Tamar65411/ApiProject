@@ -22,13 +22,7 @@ namespace Service
         {
             return await repository.getAllProduct(   desc,  minPrice,  maxPrice,categoriesId);
         }
-        public async Task<IEnumerable<Product>> getProductById(int[] ids)
-        {
-            IEnumerable<Product> products = await repository.getProductById(ids);
-            return products;
-
-        }
-
+   
 
 
     }

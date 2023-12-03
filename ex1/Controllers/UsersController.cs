@@ -32,7 +32,7 @@ namespace ex1.Controllers
             UsersTbl user = await service.getUserByEmailAndPassword(userLogin);
             if (user == null)
                 return NoContent();
-            logger.LogInformation("user login");
+           // logger.LogInformation("user login");
             return Ok(user);
         }
 
