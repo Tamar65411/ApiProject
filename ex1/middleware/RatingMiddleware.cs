@@ -31,7 +31,7 @@ namespace ex1.middleware
             rating.UserAgent = httpContext.Request.Headers["User-Agent"].ToString();
             rating.RecordDate = DateTime.Now;
             await ratingService.addRating(rating);
-              _next(httpContext);
+            await _next(httpContext);
         }
     }
 

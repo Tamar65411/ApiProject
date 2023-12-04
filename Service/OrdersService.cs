@@ -25,6 +25,10 @@ namespace Service
 
         public async Task<OrdersTbl> addNewOrder(OrdersTbl newOrder)
         {
+            if(newOrder.UserId!= null)
+            {
+
+            
             int[] ids = new int[newOrder.OrderItemTbls.Count()];
             for (int i = 0; i < newOrder.OrderItemTbls.Count(); i++)
             {
@@ -35,15 +39,20 @@ namespace Service
             int sum = 0;
             for (int i = 0; i < prices.Count(); i++)
             {
-                sum += i;
+                sum += prices.ElementAt(i);
             }
-            if(sum==newOrder.OrderSum)
-                    return await repository.addNewOrder(newOrder);
-           
-            _logger.LogInformation("someone try to still");
-            _logger.LogError("someone try to still");
+            if (sum != newOrder.OrderSum)
+            {
 
+                _logger.LogInformation("someone try to still");
+                _logger.LogError("someone try to still");
+                return null;
+            }
+            return await repository.addNewOrder(newOrder);
+           }
             return null;
+           
+        
 
 
         }

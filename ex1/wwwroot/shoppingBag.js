@@ -39,13 +39,12 @@ const deleteFromBag = (product) => {
 const placeOrder = async () => {
     let user = JSON.parse(sessionStorage.getItem("user"))
     if (user) {
-    var order = {
-        orderDate: new Date,
-        orderSum: allPrice,
-        userId: user.userId,
-        OrderItemTbls: myProduct
-
-    }
+        var order = {
+            orderDate: new Date,
+            orderSum: allPrice,
+            userId: user.userId,
+            OrderItemTbls: myProduct
+        }
         try {
             const responsePost = await fetch('api/Orders', {
                 method: 'POST',
@@ -59,8 +58,8 @@ const placeOrder = async () => {
             }
             else {
                 const newOrder = await responsePost.json();
-                alert("ההזמנה בוצעה בהצלחה")
-                 countProducts = 0;
+                alert(`${newOrder.orderId} is created`)
+                countProducts = 0;
                 allPrice = 0;
                 sessionStorage.removeItem("products")
                 window.location.href = "./Payment.html"
@@ -71,6 +70,9 @@ const placeOrder = async () => {
             alert(`the order didnt create`)
         }
 
+    }
+    else {
+        window.location.href = "./home.html"
     }
 }
 
