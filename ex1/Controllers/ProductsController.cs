@@ -23,11 +23,11 @@ namespace ex1.Controllers
 
         // GET: api/<ProductsController>
         [HttpGet]
-        public async Task<IEnumerable<ProductDTO>> Get( string? desc, int? minPrice, int? maxPrice, [FromQuery] int?[] categoriesId)
+        public async Task<ActionResult<IEnumerable<ProductDTO>>> Get( string? desc, int? minPrice, int? maxPrice, [FromQuery] int?[] categoriesId)
         {
             IEnumerable<Product> products= await service.getAllProduct( desc,  minPrice,  maxPrice, categoriesId);
             IEnumerable<ProductDTO> productsDTO = mapper.Map<IEnumerable<Product>, IEnumerable<ProductDTO>>(products);
-            return productsDTO;
+            return Ok(productsDTO);
         }
 
  

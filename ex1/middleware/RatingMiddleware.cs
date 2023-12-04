@@ -27,8 +27,8 @@ namespace ex1.middleware
             rating.Host = httpContext.Request.Host.ToString();
             rating.Method = httpContext.Request.Method;
             rating.Path = httpContext.Request.Path;
-            rating.Referer = httpContext.Request.Headers["Referer"].ToString();
-            rating.UserAgent = httpContext.Request.Headers["User-Agent"].ToString();
+            rating.Referer = httpContext.Request.Headers.ToString();
+            rating.UserAgent = httpContext.Request.Headers.UserAgent;
             rating.RecordDate = DateTime.Now;
             await ratingService.addRating(rating);
             await _next(httpContext);

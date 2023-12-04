@@ -22,13 +22,14 @@ namespace ex1.Controllers
         }
         // GET: api/<CategoriesController>
         [HttpGet]
-        public async Task<IEnumerable<CategoriesDTO>> Get()
+        public async Task<ActionResult<IEnumerable<CategoriesDTO>>> Get()
         {
 
            IEnumerable <Category > categoriesList= await service.getAllCategories();
            IEnumerable<CategoriesDTO> categoriesListDTO = mapper.Map<IEnumerable<Category>, IEnumerable<CategoriesDTO>>(categoriesList);
-            return categoriesListDTO;
+            return Ok(categoriesListDTO);
         }
 
+     
     }
 }
